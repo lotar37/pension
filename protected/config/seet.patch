@@ -1,0 +1,125 @@
+--- main.php	2015-06-02 22:33:35.000000000 +0400
++++ mic/main.php	2015-05-26 11:32:30.000000000 +0400
+@@ -2,41 +2,37 @@
+ 
+ // uncomment the following to define a path alias
+ // Yii::setPathOfAlias('local','path/to/local-folder');
+-// This is the main Web application configuration. Any writable
+-// CWebApplication properties can be configured here.
+-//echo Yii::app()->request->cookies['theme']->value;
++
+ Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+ 
+-if(isset($_COOKIE['theme'])) $theme =  $_COOKIE['theme'];
+-else $theme = "classic";
++// This is the main Web application configuration. Any writable
++// CWebApplication properties can be configured here.
+ return array(
+ 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+ 	'name'=>'Пенсионное обеспечение лиц, проходивших военную службу и членов их семей',
+-	//'name'=>'Пенсионное обеспечение',
+ 	'language'=>'ru',
+-	'theme'=>$theme,
+ 
+ 	// preloading 'log' component
+ 	'preload'=>array('log'),
+ 
+ 	// autoloading model and component classes
+ 	'import'=>array(
+-	    // 		'application.modules.userAdmin.components.DBConnection',
+-	    // 		'application.modules.userAdmin.components.PgSchema',
+-	    // 		'application.modules.userAdmin.components.DBAuthManager',
+-	    // 		'application.modules.userAdmin.components.UserIdentity',
++// 		'application.modules.userAdmin.components.DBConnection',
++// 		'application.modules.userAdmin.components.PgSchema',
++// 		'application.modules.userAdmin.components.DBAuthManager',
++// 		'application.modules.userAdmin.components.UserIdentity',
+ 	    'application.modules.userAdmin.components.*',
+ 	    'application.modules.userAdmin.models.Users',
+ 	    
+ 	    'application.models.*',
+ 	    'application.components.*',
+-	    // 			'ext.Numbers.Words.Locale.ru',
+-	    // 			'ext.Numbers.words',
++// 			'ext.Numbers.Words.Locale.ru',
++// 			'ext.Numbers.words',
+ 	    'ext.giix-components.*',
+ 	     
+ 	),
+     
+-    // 	'theme'=>'bootstrap',    
++// 	'theme'=>'bootstrap',
+ 
+ 	'modules'=>array(
+ 		// uncomment the following to enable the Gii tool
+@@ -49,19 +45,16 @@
+ 		    ),
+ 			'password'=>'123',
+ 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
+-			//'ipFilters'=>array('127.0.0.1','::1'),
+ 		    'ipFilters'=>array('127.0.0.1','192.168.238.1'),		    
+ 		),
+-	    
+ 	    'userAdmin'=>array(
+ 	        'dbConnection'=>'dba',
+ 	    ),
+-	    // 		'auth'=>array(
+-	    // 			'class'=>'system.gii.GiiModule',
+-	    // 			'password'=>'123',
+-	    // 			'dbConnection'=>'dba',
+-	    // 		),
+-	    	  
++// 		'auth'=>array(
++// 			'class'=>'system.gii.GiiModule',
++// 			'password'=>'123',
++// 			'dbConnection'=>'dba',
++// 		),
+ 	    'bootstrap',
+ 	     
+ 	),
+@@ -75,13 +68,13 @@
+ 		),
+ 
+ 		// uncomment the following to enable URLs in path-format
+-		
+ 		'urlManager'=>array(
+ 			'urlFormat'=>'path',
+ 			'rules'=>array(
+ 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+ 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+ 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
++				'/admin' => '/userAdmin',
+ 			),
+ 		),
+ 			
+@@ -106,7 +99,8 @@
+ 			// use 'site/error' action to display errors
+ 			'errorAction'=>'site/error',
+ 		),
+-	/*'log'=>array(
++		
++	'_log'=>array(
+ 			'class'=>'CLogRouter',
+ 			'routes'=>array(
+ 				array(
+@@ -114,20 +108,9 @@
+ 					'levels'=>'error, warning',
+ 				),
+ 				// uncomment the following to show log messages on web pages
+-				/*
+ 				array(
+ 					'class'=>'CWebLogRoute',
+ 				),
+-				
+-			),
+-		),*/
+-		'_log'=>array(
+-        'class'=>'CLogRouter',
+-        'routes'=>array(
+-            array(
+-                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+-               // 'ipFilters'=>array('127.0.0.1','192.168.1.215'),
+-            ),
+           ),
+         ),
+ 	    
